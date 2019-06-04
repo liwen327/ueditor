@@ -16,7 +16,7 @@ UE.plugins['video'] = function () {
      * @param toEmbed 是否以flash代替显示
      * @param addParagraph  是否需要添加P 标签
      */
-    function creatInsertStr(url, alt,poster, width, height, id, align, classname, type) {
+    function creatInsertStr(url, alt, poster, width, height, id, align, classname, type) {
 
         alt = utils.html(alt);
         poster = utils.html(poster);
@@ -42,7 +42,7 @@ UE.plugins['video'] = function () {
                 var ext = url.substr(url.lastIndexOf('.') + 1);
                 if (ext == 'ogv') ext = 'ogg';
                 str = '<video' + (id ? ' id="' + id + '"' : '') + (alt ? ' alt="' + alt + '"' : '') + (poster ? ' poster="' + poster + '"' : '') + ' playsinline webkit-playsinline  x5-video-player-type="h5"  x5-video-player-fullscreen="true"' + ' class="' + classname + ' video-js" ' + (align ? ' style="float:' + align + '"' : '') +
-                    ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '" data-setup="{}">' +
+                    ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '" >' +
                     '<source src="' + url + '" type="video/' + ext + '" /></video>';
                 break;
             case 'audio':
