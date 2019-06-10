@@ -42,7 +42,7 @@ UE.plugins['video'] = function () {
                 var ext = url.substr(url.lastIndexOf('.') + 1);
                 if (ext == 'ogv') ext = 'ogg';
                 str = '<video' + (id ? ' id="' + id + '"' : '') + (alt ? ' alt="' + alt + '"' : '') + (poster ? ' poster="' + poster + '"' : '') + ' playsinline webkit-playsinline  x5-video-player-type="h5"  x5-video-player-fullscreen="true"' + ' class="' + classname + ' video-js" ' + (align ? ' style="float:' + align + '"' : '') +
-                    ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '" >' +
+                    ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '" data-setup="{}">' +
                     '<source src="' + url + '" type="video/' + ext + '" /></video>';
                 break;
             case 'audio':
@@ -68,7 +68,7 @@ UE.plugins['video'] = function () {
                 node.parentNode.replaceChild(UE.uNode.createElement(html), node);
             }
             if (className && className.indexOf('audio') != -1) {
-                var html = creatInsertStr(img2video ? node.getAttr('_url') : node.getAttr('src'), '', node.getAttr('width'), node.getAttr('height'), '', node.getStyle('float') || '', className, img2video ? 'audio' : 'image');
+                var html = creatInsertStr(img2video ? node.getAttr('_url') : node.getAttr('src'), '', '', node.getAttr('width'), node.getAttr('height'), '', node.getStyle('float') || '', className, img2video ? 'audio' : 'image');
                 node.parentNode.replaceChild(UE.uNode.createElement(html), node);
             }
         })
@@ -156,7 +156,7 @@ UE.plugins['video'] = function () {
             for (var i = 0, vi, len = videoObjs.length; i < len; i++) {
                 vi = videoObjs[i];
                 cl = (type == 'upload' ? 'edui-upload-video video-js vjs-default-skin' : 'edui-faked-video');
-                html.push(creatInsertStr(vi.url, vi.alt, vi.width || 420, vi.height || 280, id + i, null, cl, 'image'));
+                html.push(creatInsertStr(vi.url, vi.alt, vi.poster, vi.width || 420, vi.height || 280, id + i, null, cl, 'image'));
 
             }
             me.execCommand("inserthtml", html.join(""), true);
